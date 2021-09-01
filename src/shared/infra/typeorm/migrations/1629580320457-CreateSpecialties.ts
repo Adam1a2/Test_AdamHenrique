@@ -11,6 +11,7 @@ export class CreateSpecialties1629580320457 implements MigrationInterface {
                 name: "id",
                 type: "uuid",
                 isPrimary: true,
+                default: 'uuid_generate_v4()',
               },
               {
                 name: "name",

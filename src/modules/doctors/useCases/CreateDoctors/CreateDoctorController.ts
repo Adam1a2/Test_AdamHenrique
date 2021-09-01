@@ -11,7 +11,7 @@ class CreateDoctorController{
 
         const createDoctorUseCase = container.resolve(CreateDoctorUseCase);
 
-        await createDoctorUseCase.execute({
+       const createdDoctor =  await createDoctorUseCase.execute({
             name, 
             crm, 
             landline, 
@@ -20,7 +20,8 @@ class CreateDoctorController{
             specialties
         })
 
-        return response.status(201).send();
+        return response.status(201).json({doctor: createdDoctor})
+        
     }
 }
 

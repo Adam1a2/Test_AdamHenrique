@@ -40,12 +40,11 @@ doctorRoutes.delete("/delete/:id", deleteDoctorController.handle)
 
 doctorRoutes.put("/update/:id", celebrate({
     [Segments.BODY]: {
-      name: Joi.string().required(),
-      crm: Joi.string().regex(RegExp('^\\d{7}$')).required(),
+      crm: Joi.string().regex(RegExp('^\\d{7}$')),
       landline: Joi.string().regex(RegExp('^\\d{8}$')),
-      cellPhone: Joi.string().regex(RegExp('^\\d{11}$')).required(),
-      cep: Joi.string().regex(RegExp('^\\d{8}$')).required(),
-      specialties: Joi.array().items(Joi.string()).min(2).required(),
+      cellPhone: Joi.string().regex(RegExp('^\\d{11}$')),
+      cep: Joi.string().regex(RegExp('^\\d{8}$')),
+      specialties: Joi.array().items(Joi.string()).min(2),
     }
  }), 
  updateDoctorController.handle)

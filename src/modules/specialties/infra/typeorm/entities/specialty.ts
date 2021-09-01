@@ -1,11 +1,11 @@
-import { Column, CreateDateColumn, DeleteDateColumn, Entity, ManyToMany, PrimaryColumn, UpdateDateColumn } from "typeorm";
-import { v4 as uuidV4 } from "uuid";
+import { Column, CreateDateColumn, DeleteDateColumn, Entity, ManyToMany, PrimaryColumn, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+
 import { Doctor } from "../../../../doctors/infra/typeorm/entities/Doctor";
 
 @Entity("specialties")
 class Specialty {
   
-  @PrimaryColumn()
+  @PrimaryGeneratedColumn('uuid')
   id?: string;
 
   @Column()
@@ -23,11 +23,6 @@ class Specialty {
   @DeleteDateColumn()
   deleted_at?: Date;
 
-  constructor() {
-    if (!this.id) {
-      this.id = uuidV4();
-    }
-  }
 }
 
 export { Specialty };

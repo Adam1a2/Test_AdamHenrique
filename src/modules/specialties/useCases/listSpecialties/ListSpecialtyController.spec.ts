@@ -17,19 +17,11 @@ describe("GET /specialties", () => {
   });
 
 
-  it("should be able to list all specialties", async () => {
-    const specialty = {
-      name: "test",
-    };
-
-    await request(app)
-    .post("/specialties")
-    .send(specialty)
-    
+  it("should be able to list all specialties", async () => {  
     const response = await request(app).get("/specialties")
 
     expect(response.status).toBe(200);
-    expect(response.body.length).toBe(1);
+    expect(response.body.length).toBe(8);
   });
 
 })

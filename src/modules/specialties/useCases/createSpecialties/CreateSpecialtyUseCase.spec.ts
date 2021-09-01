@@ -18,7 +18,6 @@ describe("Create Specialty", () => {
         
         const name = "Specialty test";
         
-
         await createSpecialtyUseCase.execute(
             name,
         )

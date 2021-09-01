@@ -1,4 +1,4 @@
-
+import { v4 as uuidV4} from "uuid";
 import { Specialty } from "../../infra/typeorm/entities/specialty";
 import { ISpecialtiesRepository } from "../ISpecialtiesRepository";
 
@@ -54,6 +54,7 @@ class SpecialtiesRepositoryInMemory implements ISpecialtiesRepository{
         const specialty = new Specialty();
 
         Object.assign(specialty, {
+            id: uuidV4(),
             name
         });
 
