@@ -7,13 +7,12 @@ import { FilterDoctorCepUseCase } from "./FilterDoctorCepUseCase";
 
 class FilterDoctorCepController{
     async handle(request: Request, response: Response): Promise<Response>{
-        const {cep} = request.body;
-
+        
+        const {cep} = request.params;
+        
         const filterDoctorCepUseCase = container.resolve(FilterDoctorCepUseCase)
 
         const doctors = await filterDoctorCepUseCase.execute(cep)
-
-        console.log(doctors)
 
         return response.json(doctors).send();
     }

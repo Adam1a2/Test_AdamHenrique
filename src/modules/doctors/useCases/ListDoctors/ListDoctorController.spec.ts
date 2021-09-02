@@ -5,7 +5,7 @@ import { app } from '../../../../shared/infra/routes/app';
 
 let connection: Connection;
 
-describe("GET /specialties", () => {
+describe("GET /doctors", () => {
     beforeAll(async () => {
       connection = await createConnection();
       await connection.runMigrations();
@@ -31,7 +31,7 @@ describe("GET /specialties", () => {
     });
   
   
-    it("should be able to list all specialties", async () => {  
+    it("should be able to list all doctors", async () => {  
       const response = await request(app).get("/doctors")
   
       expect(response.status).toBe(200);

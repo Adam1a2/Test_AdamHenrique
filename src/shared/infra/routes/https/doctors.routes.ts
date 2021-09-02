@@ -40,6 +40,7 @@ doctorRoutes.delete("/delete/:id", deleteDoctorController.handle)
 
 doctorRoutes.put("/update/:id", celebrate({
     [Segments.BODY]: {
+      name: Joi.string(),
       crm: Joi.string().regex(RegExp('^\\d{7}$')),
       landline: Joi.string().regex(RegExp('^\\d{8}$')),
       cellPhone: Joi.string().regex(RegExp('^\\d{11}$')),
@@ -49,13 +50,19 @@ doctorRoutes.put("/update/:id", celebrate({
  }), 
  updateDoctorController.handle)
 
- doctorRoutes.get("/recover/:id", recoverDoctorController.handle)
+doctorRoutes.get("/recover/:id", recoverDoctorController.handle)
 
- doctorRoutes.get("/select/", filterDoctorController.handle)
+doctorRoutes.get("/select/", filterDoctorController.handle)
 
-doctorRoutes.get("/ceps", filterDoctorCepController.handle)
+doctorRoutes.get("/ceps/:cep", celebrate({
+  [Segments.PARAMS]: {
+      cep: Joi.string()
+        .regex(/^([\d]{8})$/)
+        .required(),
+  }
+}), filterDoctorCepController.handle)
 
-doctorRoutes.get("/specialty", filterDoctorSpecialtyController.handle)
+doctorRoutes.get("/specialty/:specialty", filterDoctorSpecialtyController.handle)
 
 
 export { doctorRoutes}

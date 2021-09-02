@@ -7,7 +7,7 @@ import { FilterDoctorSpecialtyUseCase } from "./FilterDoctorSpecialtyUseCase";
 class FilterDoctorSpecialtyController{
     async handle(request: Request, response: Response): Promise<Response>{
 
-        const { specialty } = request.body;
+        const { specialty } = request.params;
 
         const filterDoctorSpecialtyUseCase = container.resolve(FilterDoctorSpecialtyUseCase)
 

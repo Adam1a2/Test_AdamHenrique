@@ -7,14 +7,16 @@ import { router } from "./https";
 import "../../container"
 import { AppError } from "../../errors/AppError";
 import  createConnection  from "../typeorm/index";
-
-
+import swaggerUI from "swagger-ui-express";
+import swaggerFile from "../../../swagger.json";
 
 createConnection();
 
 const app = express();
 
 app.use(express.json());
+
+app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(swaggerFile))
 
 app.use(router)
 

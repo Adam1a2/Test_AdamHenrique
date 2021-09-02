@@ -1,0 +1,438 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Api Test Documentation",
+        "description": "This is API",
+        "version": "1.0.0",
+        "contact": {
+            "email": "adamhenrique67@gmail.com"
+            }
+    },
+    "paths":{
+        "/specialties":{
+            "post": {
+                "tags": ["Specialty"],
+                "summary": "Create a specialty",
+                "description": "Create a new specialty",
+                "requestBody":{
+                    "content":{
+                        "application/json":{ 
+                            "schema": {
+                                "type": "object",
+                                    "properties":{
+                                        "name":{
+                                        "type": "string"
+                                        }                                     
+                                    },
+                                "example": {
+                                    "name": "specialty name sample"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Created"
+                    },
+                    "500": {
+                        "description": "Specialty already exists"
+                    }
+                }
+            },
+            "get": {
+                "tags": ["Specialty"],
+                "summary": "List all specialties",
+                "description": "List all specialties",
+                "responses": {
+                    "200": {
+                        "description": "Sucess",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "itens": {
+                                        "type": "object",
+                                        "properties": {
+                                            "name": {
+                                                "type": "string"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
+                    }
+                }
+            }
+        },
+        "/ceps":{
+            "post": {
+                "tags": ["Cep"],
+                "summary": "Register a cep",
+                "description": "Register a new cep",
+                "requestBody":{
+                    "content":{
+                        "application/json":{ 
+                            "schema": {
+                                "type": "object",
+                                    "properties":{
+                                        "name":{
+                                        "type": "string"
+                                        }                                     
+                                },
+                                "example": {
+                                    "cep": "cep name sample"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Registered"
+                    },
+                    "500": {
+                        "description": "Cep Does not exists"
+                    }
+                }
+            },
+            "get": {
+                "tags": ["Cep"],
+                "summary": "List all ceps",
+                "description": "List all ceps",
+                "responses": {
+                    "200": {
+                        "description": "Sucess",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "itens": {
+                                        "type": "object",
+                                        "properties": {
+                                            "name": {
+                                                "type": "string"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
+                    }
+                }
+            }
+    
+        },
+        "/doctors":{
+            "post": {
+                "tags": ["Doctor"],
+                "summary": "Create a new Doctor",
+                "description": "Create a new Doctor",
+                "requestBody": {
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                                "$ref": "#/definitions/Doctor"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Created"
+                    },
+                    "400":{
+                        "description": "Doctor already exists"
+                    }
+                }
+            },
+            "get": {
+                "tags": ["Doctor"],
+                "summary": "List all doctors",
+                "description": "List all doctors",
+                "responses": {
+                    "200": {
+                        "description": "Sucess",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "itens": {
+                                        "type": "object",
+                                        "properties": {
+                                            "name": {
+                                                "type": "string"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
+                    }
+                }
+            }
+            
+        },
+        "/doctors/update/{id}":{
+            "put": {
+                "tags": ["Doctor"],
+                "summary": "Update  Doctor",
+                "description": "Update a Doctor",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Doctor id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                                "$ref": "#/definitions/Doctor"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Update"
+                    },
+                    "400":{
+                        "description": "Doctor not exists"
+                    }
+                }
+            }
+        },
+        "/doctors/ceps/{cep}":{
+            "get": {
+                "tags": ["Doctor"],
+                "summary": "List Doctors by cep",
+                "description": "List Doctors by cep",
+                "parameters": [
+                    {
+                        "name": "cep",
+                        "in": "path",
+                        "description": "Doctor cep",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Sucess",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "itens": {
+                                        "type": "object",
+                                        "properties": {
+                                            "name": {
+                                                "type": "string"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
+                    },
+                    "400": {
+                        "description": "Cep does not exists"
+                    } 
+                }
+            }
+        },
+        "/doctors/specialty/{specialty}": {
+            "get": {
+                "tags": ["Doctor"],
+                "summary": "List Doctors by specialty",
+                "description": "List Doctors by specialty",
+                "parameters": [
+                    {
+                        "name": "specialty",
+                        "in": "path",
+                        "description": "Doctor specialty",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Sucess",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "itens": {
+                                        "type": "object",
+                                        "properties": {
+                                            "name": {
+                                                "type": "string"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
+                    },
+                    "400": {
+                        "description": "Specialty does not exists"
+                    } 
+                }
+            }
+        },
+        "/doctors/select/":{
+            "get": {
+                "tags": ["Doctor"],
+                "summary": "List Doctors by select",
+                "description": "List Doctors by select",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "Select Doctors by",
+                        "content": {
+                          "application/json": {
+                            "schema": {
+                              "type": "object",
+                              "properties": {
+                                "name": {
+                                  "type": "string"
+                                },
+                                "crm": {
+                                  "type": "string"
+                                },
+                                "landline": {
+                                    "type": "string"
+                                },
+                                "cellPhone": {
+                                    "type": "string"
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Sucess",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "itens": {
+                                        "type": "object",
+                                        "properties": {
+                                            "name": {
+                                                "type": "string"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
+                    },
+                    "500": {
+                        "description": "Internal Error"
+                    } 
+                }
+            }
+        },
+        "/doctors/delete/{id}":{
+            "delete": {
+                "tags": ["Doctor"],
+                "summary": "Delete  Doctor",
+                "description": "Delete a Doctor",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Doctor id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Doctor deleted"
+                    },
+                    "400":{
+                        "description": "Doctor not exists"
+                    }
+                }
+            }
+        },
+        "/doctors/recover/{id}":{
+            "get": {
+                "tags": ["Doctor"],
+                "summary": "Recover  Doctor",
+                "description": "Recover a Doctor",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Doctor id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Doctor recovered"
+                    },
+                    "400":{
+                        "description": "Doctor not deleted"
+                    }
+                }
+            }
+        }
+    },
+    "definitions":{
+        "Doctor": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "crm": {
+                    "type": "string"
+                },
+                "landline": {
+                    "type": "string"
+                },
+                "cellPhone": {
+                    "type": "string"
+                },
+                "cep": {
+                    "type": "string"
+                },
+                "specialties": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }     
+            }
+        }
+    }
+}
