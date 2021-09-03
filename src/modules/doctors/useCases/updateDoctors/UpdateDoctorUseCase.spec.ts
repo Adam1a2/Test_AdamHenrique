@@ -56,6 +56,64 @@ describe("Update Doctor", () =>{
         })
     })
 
+    it("should not be able to update a doctor that doesn't exist", async() =>{
+        await expect(
+            updateDoctorUseCase.execute({
+                id: "dasdasdasdas77676466456456",
+                crm: "1234567"
+            })
+        ).rejects.toBeInstanceOf(AppError)
+    })
+
+    it("should  be able update a doctor with name is passed", async() =>{
+        
+            const response = await updateDoctorUseCase.execute({
+                id: createdDoctor.id,
+                name: "test2"
+            })
+        
+            expect(response.name).toEqual("test2")
+    })
+
+    it("should  be able update a doctor with landline is passed", async() =>{
+        
+        const response = await updateDoctorUseCase.execute({
+            id: createdDoctor.id,
+            landline: "40028923"
+        })
+    
+        expect(response.landline).toEqual("40028923")
+    })
+
+    it("should  be able update a doctor with cellPhone is passed", async() =>{
+        
+        const response = await updateDoctorUseCase.execute({
+            id: createdDoctor.id,
+            cellPhone: "31992383341"
+        })
+    
+        expect(response.cellPhone).toEqual("31992383341")
+    })
+
+    it("should  be able update a doctor with cep exists", async() =>{
+        
+        const response = await updateDoctorUseCase.execute({
+            id: createdDoctor.id,
+            cep: "59631475"
+        })
+    
+        expect(response.cep.cep).toEqual("59631475")
+    })
+
+    it("should  be able update a doctor with specialties is passed", async() =>{
+        
+        const response = await updateDoctorUseCase.execute({
+            id: createdDoctor.id,
+            specialties: ["Cardiologia", "Buco maxilo"]
+        })
+    
+        expect(response.specialties).toHaveLength(2)
+    })
 
     it("should not be able to update a doctor with a crm that is already registered", async() =>{
         await expect(

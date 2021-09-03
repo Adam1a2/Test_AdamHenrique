@@ -130,7 +130,7 @@
             "post": {
                 "tags": ["Doctor"],
                 "summary": "Create a new Doctor",
-                "description": "Create a new Doctor",
+                "description": "Obs: The doctor must have at least 2 specialties",
                 "requestBody": {
                     "content": {
                         "application/json":{
@@ -304,29 +304,37 @@
                 "parameters": [
                     {
                         "in": "query",
-                        "name": "Select Doctors by",
-                        "content": {
-                          "application/json": {
-                            "schema": {
-                              "type": "object",
-                              "properties": {
-                                "name": {
-                                  "type": "string"
-                                },
-                                "crm": {
-                                  "type": "string"
-                                },
-                                "landline": {
-                                    "type": "string"
-                                },
-                                "cellPhone": {
-                                    "type": "string"
-                                }
-                              }
-                            }
-                          }
+                        "name": "name",
+                        "schema":{
+                            "type": "string"
                         }
-                      }
+                        
+                    },
+                    {
+                        "in": "query",
+                        "name": "crm",
+                        "schema":{
+                            "type": "string"
+                        }
+                        
+                    },
+                    {
+                        "in": "query",
+                        "name": "landline",
+                        "schema":{
+                            "type": "string"
+                        }
+                        
+                    },
+                    {
+                        "in": "query",
+                        "name": "cellPhone",
+                        "schema":{
+                            "type": "string"
+                        }
+                        
+                    }
+
                 ],
                 "responses": {
                     "200": {

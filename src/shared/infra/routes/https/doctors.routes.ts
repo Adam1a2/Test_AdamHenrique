@@ -24,9 +24,9 @@ const filterDoctorSpecialtyController = new FilterDoctorSpecialtyController();
 
 doctorRoutes.post("/", celebrate({
     [Segments.BODY]: {
-      name: Joi.string().required(),
+      name: Joi.string().max(120).required(),
       crm: Joi.string().regex(RegExp('^\\d{7}$')).required(),
-      landline: Joi.string().regex(RegExp('^\\d{8}$')),
+      landline: Joi.string().regex(RegExp('^\\d{8}$')).required(),
       cellPhone: Joi.string().regex(RegExp('^\\d{11}$')).required(),
       cep: Joi.string().regex(RegExp('^\\d{8}$')).required(),
       specialties: Joi.array().items(Joi.string()).min(2).required(),
@@ -40,7 +40,7 @@ doctorRoutes.delete("/delete/:id", deleteDoctorController.handle)
 
 doctorRoutes.put("/update/:id", celebrate({
     [Segments.BODY]: {
-      name: Joi.string(),
+      name: Joi.string().max(120),
       crm: Joi.string().regex(RegExp('^\\d{7}$')),
       landline: Joi.string().regex(RegExp('^\\d{8}$')),
       cellPhone: Joi.string().regex(RegExp('^\\d{11}$')),
@@ -52,7 +52,16 @@ doctorRoutes.put("/update/:id", celebrate({
 
 doctorRoutes.get("/recover/:id", recoverDoctorController.handle)
 
-doctorRoutes.get("/select/", filterDoctorController.handle)
+doctorRoutes.get("/select/", 
+celebrate({
+  [Segments.QUERY]: {
+    name: Joi.string().max(120),
+    crm: Joi.string().regex(RegExp('^\\d{7}$')),
+    landline: Joi.string().regex(RegExp('^\\d{8}$')),
+    cellPhone: Joi.string().regex(RegExp('^\\d{11}$'))
+  }
+}), 
+filterDoctorController.handle)
 
 doctorRoutes.get("/ceps/:cep", celebrate({
   [Segments.PARAMS]: {

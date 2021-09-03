@@ -19,11 +19,6 @@ class FilterDoctorUseCase{
         cellPhone,
     }: IFilterDoctorDTO): Promise<Doctor[]>{
         
-            if(name.length > 120){
-                throw new AppError("The name cannot be longer than 120 characters.")
-            }
-            
-        
         const filteredDoctors = await this.doctorsRepository.filterDoctors(
             name,
             crm,

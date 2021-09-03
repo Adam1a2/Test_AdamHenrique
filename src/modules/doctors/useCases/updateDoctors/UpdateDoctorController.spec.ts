@@ -168,5 +168,17 @@ describe('PUT /doctors/update', () => {
     
         expect(body.message).toBe('Specialties were not found');
     });
+
+    it('should be able to update a doctor', async () => {
+      const doctorUpdate = {
+        crm: '1446547',
+      };
+  
+      const { body } = await request(app)
+        .put(`/doctors/update/${createdDoctor.id}`)
+        .send(doctorUpdate)
+        .expect(201);
+
+    });
     
 });

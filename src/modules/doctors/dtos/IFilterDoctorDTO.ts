@@ -7,10 +7,6 @@ interface IFilterDoctorDTO{
     landline?: string;
 
     cellPhone?: string;
-
-    cep?: string;
-
-    specialty?: string;
 }
 
 export {IFilterDoctorDTO }
