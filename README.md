@@ -80,4 +80,4 @@ make run-tests
 
 O resultado dos testes são apresentados no terminal já com a informação de code coverage
 
-<img src=https://github.com/Adam1a2/Test_AdamHenrique/imageTests.png height="500">
+<img src=https://user-images.githubusercontent.com/79374233/132604052-a79cc1e2-ddbf-4a8c-a48c-9268545b63b4.png height="500">
