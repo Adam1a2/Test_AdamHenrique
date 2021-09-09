@@ -1,8 +1,8 @@
 Arguments: 
-  /usr/local/bin/node /usr/share/yarn/bin/yarn.js add swagger ui-express
+  /usr/local/bin/node /usr/share/yarn/bin/yarn.js add cross-env
 
 PATH: 
-  /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin
+  /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
 
 Yarn version: 
   1.22.5
@@ -14,17 +14,7 @@ Platform:
   linux x64
 
 Trace: 
-  Error: https://registry.yarnpkg.com/ui-express: Not found
-      at Request.params.callback [as _callback] (/usr/share/yarn/lib/cli.js:66988:18)
-      at Request.self.callback (/usr/share/yarn/lib/cli.js:140749:22)
-      at Request.emit (node:events:394:28)
-      at Request.<anonymous> (/usr/share/yarn/lib/cli.js:141721:10)
-      at Request.emit (node:events:394:28)
-      at IncomingMessage.<anonymous> (/usr/share/yarn/lib/cli.js:141643:12)
-      at Object.onceWrapper (node:events:513:28)
-      at IncomingMessage.emit (node:events:406:35)
-      at endReadableNT (node:internal/streams/readable:1348:12)
-      at processTicksAndRejections (node:internal/process/task_queues:83:21)
+  Error: EACCES: permission denied, unlink '/home/adam/Área de Trabalho/aprendendo node/teste_empresa/Teste_BackEnd/node_modules/@babel/compat-data/LICENSE'
 
 npm manifest: 
   {
@@ -33,21 +23,25 @@ npm manifest:
     "main": "index.js",
     "license": "MIT",
     "scripts": {
-      "dev": "ts-node-dev --transpile-only --ignore-watch node_modules --respawn src/shared/infra/routes/server.ts",
+      "dev": "NODE_ENV_DEV=dev ts-node-dev --transpile-only --ignore-watch node_modules --respawn src/shared/infra/routes/server.ts",
       "typeorm": "ts-node-dev ./node_modules/typeorm/cli",
       "test": "NODE_ENV=test jest --runInBand"
     },
     "dependencies": {
       "axios": "^0.21.1",
       "celebrate": "^15.0.0",
+      "cross": "^1.0.0",
+      "dotenv": "^10.0.0",
+      "env": "^0.0.2",
       "express": "^4.17.1",
       "express-async-errors": "^3.1.1",
       "node-correios": "^3.0.2",
       "pg": "^8.7.1",
       "reflect-metadata": "^0.1.13",
+      "supertest": "^6.1.6",
+      "swagger-ui-express": "^4.1.6",
       "tsyringe": "^4.6.0",
       "typeorm": "^0.2.37",
-      "supertest": "^6.1.6",
       "uuid": "^8.3.2"
     },
     "devDependencies": {
@@ -55,6 +49,7 @@ npm manifest:
       "@types/jest": "^27.0.1",
       "@types/node": "^16.7.1",
       "@types/supertest": "^2.0.11",
+      "@types/swagger-ui-express": "^4.1.3",
       "@types/uuid": "^8.3.1",
       "@typescript-eslint/eslint-plugin": "^4.29.2",
       "@typescript-eslint/parser": "^4.29.2",
@@ -744,7 +739,7 @@ Lockfile:
       "@types/qs" "*"
       "@types/range-parser" "*"
   
-  "@types/express@^4.17.13":
+  "@types/express@*", "@types/express@^4.17.13":
     version "4.17.13"
     resolved "https://registry.yarnpkg.com/@types/express/-/express-4.17.13.tgz#a76e2995728999bab51a33fabce1d705a3709034"
     integrity sha512-6bSZTPaTIACxn48l50SR+axgrqm6qXFIxrdAKaG6PaJk3+zuUr35hBlgT7vOmJcum+OEaIBLtHV/qloEAFITeA==
@@ -870,6 +865,14 @@ Lockfile:
     integrity sha512-uci4Esokrw9qGb9bvhhSVEjd6rkny/dk5PK/Qz4yxKiyppEI+dOPlNrZBahE3i+PoKFYyDxChVXZ/ysS/nrm1Q==
     dependencies:
       "@types/superagent" "*"
+  
+  "@types/swagger-ui-express@^4.1.3":
+    version "4.1.3"
+    resolved "https://registry.yarnpkg.com/@types/swagger-ui-express/-/swagger-ui-express-4.1.3.tgz#7adbbbf5343b45869debef1e9ff39c9ba73e380f"
+    integrity sha512-jqCjGU/tGEaqIplPy3WyQg+Nrp6y80DCFnDEAvVKWkJyv0VivSSDCChkppHRHAablvInZe6pijDFMnavtN0vqA==
+    dependencies:
+      "@types/express" "*"
+      "@types/serve-static" "*"
   
   "@types/tough-cookie@*":
     version "4.0.1"
@@ -1607,6 +1610,11 @@ Lockfile:
       shebang-command "^2.0.0"
       which "^2.0.1"
   
+  cross@^1.0.0:
+    version "1.0.0"
+    resolved "https://registry.yarnpkg.com/cross/-/cross-1.0.0.tgz#b155d3719d95e3eb16e51757ed5abc96bee19cfa"
+    integrity sha1-sVXTcZ2V4+sW5RdX7Vq8lr7hnPo=
+  
   cssom@^0.4.4:
     version "0.4.4"
     resolved "https://registry.yarnpkg.com/cssom/-/cssom-0.4.4.tgz#5a66cf93d2d0b661d80bf6a44fb65f5c2e4e0a10"
@@ -1746,6 +1754,11 @@ Lockfile:
     dependencies:
       webidl-conversions "^5.0.0"
   
+  dotenv@^10.0.0:
+    version "10.0.0"
+    resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-10.0.0.tgz#3d4227b8fb95f81096cdd2b66653fb2c7085ba81"
+    integrity sha512-rlBi9d8jpv9Sf1klPjNfFAuWDjKLwTIJJ/VxtoTwIR6hnZxcEOQCZg2oIL3MWBYw5GpUDKOEnND7LXTbIpQ03Q==
+  
   dotenv@^8.2.0:
     version "8.6.0"
     resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-8.6.0.tgz#061af664d19f7f4d8fc6e4ff9b584ce237adcb8b"
@@ -1797,6 +1810,11 @@ Lockfile:
     integrity sha512-yjNnPr315/FjS4zIsUxYguYUPP2e1NK4d7E7ZOLiyYCcbFBiTMyID+2wvm2w6+pZ/odMA7cRkjhsPbltwBOrLg==
     dependencies:
       ansi-colors "^4.1.1"
+  
+  env@^0.0.2:
+    version "0.0.2"
+    resolved "https://registry.yarnpkg.com/env/-/env-0.0.2.tgz#50c19f307b129a45845b6b686df5b39dd40d1cf0"
+    integrity sha1-UMGfMHsSmkWEW2tobfWzndQNHPA=
   
   error-ex@^1.3.1:
     version "1.3.2"
@@ -4570,6 +4588,18 @@ Lockfile:
     dependencies:
       has-flag "^4.0.0"
       supports-color "^7.0.0"
+  
+  swagger-ui-dist@^3.18.1:
+    version "3.52.0"
+    resolved "https://registry.yarnpkg.com/swagger-ui-dist/-/swagger-ui-dist-3.52.0.tgz#cb16ec6dcdf134ff47cbfe57cba7be7748429142"
+    integrity sha512-SGfhW8FCih00QG59PphdeAUtTNw7HS5k3iPqDZowerPw9mcbhKchUb12kbROk99c1X6RTWW1gB1kqgfnYGuCSg==
+  
+  swagger-ui-express@^4.1.6:
+    version "4.1.6"
+    resolved "https://registry.yarnpkg.com/swagger-ui-express/-/swagger-ui-express-4.1.6.tgz#682294af3d5c70f74a1fa4d6a9b503a9ee55ea82"
+    integrity sha512-Xs2BGGudvDBtL7RXcYtNvHsFtP1DBFPMJFRxHe5ez/VG/rzVOEjazJOOSc/kSCyxreCTKfJrII6MJlL9a6t8vw==
+    dependencies:
+      swagger-ui-dist "^3.18.1"
   
   symbol-tree@^3.2.4:
     version "3.2.4"

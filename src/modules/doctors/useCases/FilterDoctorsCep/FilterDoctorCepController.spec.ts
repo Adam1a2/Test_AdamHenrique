@@ -28,13 +28,13 @@ describe("GET /doctors/cep", () => {
             specialties: ['Alergologia', 'Angiologia'],
         };
 
-        console.log(doctor.cep)
+        
 
         await request(app)
         .post('/doctors')
         .send(doctor)
         
-        console.log("Passei aki1")
+        
 
         const { body } = await request(app)
         .get(`/doctors/ceps/${doctor.cep}`)

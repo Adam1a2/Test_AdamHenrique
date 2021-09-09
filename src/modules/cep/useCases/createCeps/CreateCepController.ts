@@ -11,8 +11,6 @@ class CreateCepController{
 
         const createCepUseCase = container.resolve(CreateCepUseCase);
 
-        console.log(createCepUseCase)
-
         await createCepUseCase.execute(cep)
 
         return response.status(201).send();

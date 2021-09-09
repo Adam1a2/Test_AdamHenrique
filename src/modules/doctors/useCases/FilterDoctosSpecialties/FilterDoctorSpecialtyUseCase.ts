@@ -23,7 +23,7 @@ class FilterDoctorSpecialtyUseCase{
 
         const doctors = await this.doctorsRepository.findBySpecialty(specialty)
         
-        console.log(doctors)
+       
 
         return doctors;
     }

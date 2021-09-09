@@ -66,7 +66,7 @@ class SpecialtiesRepositoryInMemory implements ISpecialtiesRepository{
         const specialtiesFound = this.specialties.filter(findSpecialties =>
             names.find(findName => findName === findSpecialties.name),
         );
-            console.log(specialtiesFound)
+          
           return specialtiesFound;
         }
     

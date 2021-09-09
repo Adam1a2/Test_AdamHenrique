@@ -6,14 +6,14 @@ services:
             image: postgres
             container_name: database
             restart: always
-            ports:
-                - 5432:5432
             environment:
-                - POSTGRES_USER=adam
-                - POSTGRES_PASSWORD=adam
-                - POSTGRES_DB=api
+                - POSTGRES_USER=${POSTGRESQL_USERNAME}
+                - POSTGRES_PASSWORD=${POSTGRESQL_PASSWORD}
+                - POSTGRES_DB=${POSTGRESQL_DB}
             volumes:
                 - pgdata:/data/postgres
+            networks: 
+                - production
             
         app:    
             build: .
@@ -22,12 +22,46 @@ services:
                 - 3333:3333
             volumes:
                 - .:/usr/app
-            
-            links:
-                - database
             depends_on: 
                 - database
+                - migrations
+            networks: 
+                - production
+
+        tests:
+            build: .
+            container_name: api_tests
+            command: sh -c "sleep 10s && yarn test"
+            depends_on: 
+                - database_test
+            networks: 
+                - tests_network 
+
+        database_test:
+            image: postgres
+            container_name: database_test
+            environment:
+                - POSTGRES_USER=${POSTGRESQL_USERNAME}
+                - POSTGRES_PASSWORD=${POSTGRESQL_PASSWORD}
+                - POSTGRES_DB=tests
+            networks: 
+                - tests_network 
+        
+        migrations:
+            build: .
+            container_name: migrations
+            command: sh -c "yarn typeorm migration:run"
+            depends_on: 
+                - database
+            networks: 
+                - production
+
 volumes:
     pgdata:
         driver: local
 
+networks: 
+    production:
+        driver: bridge
+    tests_network:
+        driver: bridge

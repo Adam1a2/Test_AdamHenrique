@@ -29,7 +29,7 @@ class CreateDoctorUseCase{
 
         const DoctorAlreadyExists = await this.doctorsRepository.findByCrm(crm);
 
-        console.log(DoctorAlreadyExists)
+
         if(DoctorAlreadyExists){
             throw new AppError("Doctor Already Exists");
         }

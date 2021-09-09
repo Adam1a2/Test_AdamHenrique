@@ -1,4 +1,5 @@
-import "reflect-metadata"
+import "reflect-metadata";
+import "dotenv/config"
 import express, { NextFunction, Request, Response } from "express";
 import { isCelebrateError } from "celebrate";
 import "express-async-errors";
@@ -6,11 +7,10 @@ import "express-async-errors";
 import { router } from "./https";
 import "../../container"
 import { AppError } from "../../errors/AppError";
-import  createConnection  from "../typeorm/index";
 import swaggerUI from "swagger-ui-express";
 import swaggerFile from "../../../swagger.json";
 
-createConnection();
+import "../../infra/typeorm/index";
 
 const app = express();
 
@@ -27,7 +27,7 @@ app.use(
           message: err.message,
         });
       }
-      console.log(err.message);
+
 
       if (isCelebrateError(err)) {
         const values = err.details.values();

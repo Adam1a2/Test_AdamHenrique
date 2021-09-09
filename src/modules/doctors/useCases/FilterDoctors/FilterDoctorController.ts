@@ -19,7 +19,6 @@ class FilterDoctorController{
             cellPhone
         });
 
-        console.log(all)
         return response.json(all);
     }
 }
