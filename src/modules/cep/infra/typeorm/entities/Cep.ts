@@ -1,56 +1,61 @@
-import { v4 as uuidV4} from "uuid";
-import { Column, CreateDateColumn, DeleteDateColumn, Entity, OneToMany, PrimaryColumn, UpdateDateColumn } from "typeorm";
-import { Doctor } from "../../../../doctors/infra/typeorm/entities/Doctor";
+import { v4 as uuidV4 } from 'uuid';
+import {
+  Column,
+  CreateDateColumn,
+  DeleteDateColumn,
+  Entity,
+  OneToMany,
+  PrimaryColumn,
+  UpdateDateColumn,
+} from 'typeorm';
+import { Doctor } from '@modules/doctors/infra/typeorm/entities/Doctor';
 
+@Entity('ceps')
+class Cep {
+  @PrimaryColumn()
+  id?: string;
 
+  @Column()
+  cep: string;
 
-@Entity("ceps")
-class Cep{
-    @PrimaryColumn()
-    id?: string;
+  @Column()
+  street: string;
 
-    @Column()
-    cep: string;
+  @Column()
+  complement: string;
 
-    @Column()
-    street: string;
+  @Column()
+  district: string;
 
-    @Column()
-    complement: string;
+  @Column()
+  city: string;
 
-    @Column()
-    district: string;
+  @Column()
+  uf: string;
 
-    @Column()
-    city: string;
+  @Column()
+  ibge: string;
 
-    @Column()
-    uf: string;
+  @Column()
+  gia: string;
 
-    @Column()
-    ibge: string;
+  @Column()
+  ddd: string;
 
-    @Column()
-    gia: string;
+  @Column()
+  siafi: string;
 
-    @Column()
-    ddd: string;
+  @OneToMany(() => Doctor, doctor => doctor.cep)
+  doctors: Doctor[];
 
-    @Column()
-    siafi: string;
+  @CreateDateColumn()
+  created_at: Date;
 
-    @OneToMany(() => Doctor, doctor => doctor.cep)
-    doctors: Doctor[]
-
-    @CreateDateColumn()
-    created_at: Date;
-
-    constructor() {
-        if (!this.id) {
-          this.id = uuidV4();
-        }
+  constructor() {
+    if (!this.id) {
+      this.id = uuidV4();
     }
-
+  }
 }
 
 export { Cep };

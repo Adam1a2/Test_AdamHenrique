@@ -1,18 +1,18 @@
-import { Cep } from "../../cep/infra/typeorm/entities/Cep";
-import { Specialty } from "../../specialties/infra/typeorm/entities/specialty";
+import { Cep } from '@modules/cep/infra/typeorm/entities/Cep';
+import { Specialty } from '@modules/specialties/infra/typeorm/entities/specialty';
 
-interface ICreateDoctorDTO{
-    name: string;
+interface ICreateDoctorDTO {
+  name: string;
 
-    crm: string;
+  crm: string;
 
-    landline: string;
+  landline: string;
 
-    cellPhone: string;
+  cellPhone: string;
 
-    cep: Cep;
+  cep: Cep;
 
-    specialties: Specialty[];
+  specialties: Specialty[];
 }
 
-export { ICreateDoctorDTO }
+export { ICreateDoctorDTO };

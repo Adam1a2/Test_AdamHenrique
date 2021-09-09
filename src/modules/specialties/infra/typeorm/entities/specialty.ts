@@ -1,10 +1,17 @@
-import { Column, CreateDateColumn, DeleteDateColumn, Entity, ManyToMany, PrimaryColumn, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { Doctor } from '@modules/doctors/infra/typeorm/entities/Doctor';
+import {
+  Column,
+  CreateDateColumn,
+  DeleteDateColumn,
+  Entity,
+  ManyToMany,
+  PrimaryColumn,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
+} from 'typeorm';
 
-import { Doctor } from "../../../../doctors/infra/typeorm/entities/Doctor";
-
-@Entity("specialties")
+@Entity('specialties')
 class Specialty {
-  
   @PrimaryGeneratedColumn('uuid')
   id?: string;
 
@@ -16,7 +23,6 @@ class Specialty {
 
   @CreateDateColumn()
   created_at: Date;
-
 }
 
 export { Specialty };

@@ -1,18 +1,17 @@
-interface IDoctorUpdateDTO{
+interface IDoctorUpdateDTO {
+  id: string;
 
-    id: string;
+  name?: string;
 
-    name?: string;
+  crm?: string;
 
-    crm?: string;
+  landline?: string;
 
-    landline?: string;
+  cellPhone?: string;
 
-    cellPhone?: string;
+  cep?: string;
 
-    cep?: string;
-
-    specialties?: string[];
+  specialties?: string[];
 }
 
-export {IDoctorUpdateDTO }
+export { IDoctorUpdateDTO };

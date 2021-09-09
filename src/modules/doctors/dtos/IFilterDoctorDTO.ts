@@ -1,12 +1,11 @@
-interface IFilterDoctorDTO{
+interface IFilterDoctorDTO {
+  name?: string;
 
-    name?: string;
+  crm?: string;
 
-    crm?: string;
+  landline?: string;
 
-    landline?: string;
-
-    cellPhone?: string;
+  cellPhone?: string;
 }
 
-export {IFilterDoctorDTO }
+export { IFilterDoctorDTO };

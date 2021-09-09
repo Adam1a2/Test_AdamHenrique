@@ -1,21 +1,17 @@
-import { Request, Response } from "express";
-import { container } from "tsyringe";
-import { CreateCepUseCase } from "./CreateCepUseCase";
+import { Request, Response } from 'express';
+import { container } from 'tsyringe';
+import { CreateCepUseCase } from './CreateCepUseCase';
 
+class CreateCepController {
+  async handle(request: Request, response: Response): Promise<Response> {
+    const { cep } = request.body;
 
-class CreateCepController{
-    
-    async handle(request: Request, response: Response): Promise<Response>{
+    const createCepUseCase = container.resolve(CreateCepUseCase);
 
-        const { cep } = request.body;
+    await createCepUseCase.execute(cep);
 
-        const createCepUseCase = container.resolve(CreateCepUseCase);
-
-        await createCepUseCase.execute(cep)
-
-        return response.status(201).send();
-        
-    }
+    return response.status(201).send();
+  }
 }
 
-export { CreateCepController }
+export { CreateCepController };

@@ -1,15 +1,15 @@
-interface IDoctorDTO{
-    name: string;
+interface IDoctorDTO {
+  name: string;
 
-    crm: string;
+  crm: string;
 
-    landline: string;
+  landline: string;
 
-    cellPhone: string;
+  cellPhone: string;
 
-    cep: string;
+  cep: string;
 
-    specialties: string[];
+  specialties: string[];
 }
 
-export { IDoctorDTO }
+export { IDoctorDTO };

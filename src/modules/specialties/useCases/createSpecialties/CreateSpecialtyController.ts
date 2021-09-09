@@ -1,21 +1,17 @@
-import { Response, Request } from "express";
-import { container } from "tsyringe";
-import { CreateSpecialtyUseCase } from "./CreateSpecialtyUseCase";
+import { Response, Request } from 'express';
+import { container } from 'tsyringe';
+import { CreateSpecialtyUseCase } from './CreateSpecialtyUseCase';
 
+class CreateSpecialtyController {
+  async handle(request: Request, response: Response): Promise<Response> {
+    const { name } = request.body;
 
-class CreateSpecialtyController{
+    const createSpecialtyUseCase = container.resolve(CreateSpecialtyUseCase);
 
-    async handle(request: Request, response:Response): Promise<Response>{
+    await createSpecialtyUseCase.execute(name);
 
-        const { name } = request.body;
-        
-        const createSpecialtyUseCase = container.resolve(CreateSpecialtyUseCase)
-
-        await createSpecialtyUseCase.execute(name)
-    
-        return response.status(201).send();
-    }
+    return response.status(201).send();
+  }
 }
 
-
-export { CreateSpecialtyController }
+export { CreateSpecialtyController };

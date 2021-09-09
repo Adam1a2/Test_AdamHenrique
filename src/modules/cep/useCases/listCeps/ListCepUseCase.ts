@@ -1,22 +1,18 @@
-import { inject, injectable } from "tsyringe";
-import { Cep } from "../../infra/typeorm/entities/Cep";
-import { ICepsRepository } from "../../repositories/ICepsRepository";
-
-
+import { inject, injectable } from 'tsyringe';
+import { Cep } from '@modules/cep/infra/typeorm/entities/Cep';
+import { ICepsRepository } from '@modules/cep/repositories/ICepsRepository';
 
 @injectable()
-class ListCepUseCase{
-    constructor(
-        @inject("CepsRepository")
-        private cepsRepository: ICepsRepository
-    ){}
+class ListCepUseCase {
+  constructor(
+    @inject('CepsRepository')
+    private cepsRepository: ICepsRepository,
+  ) {}
 
-    async execute():Promise<Cep[]>{
-
-        const ceps = await this.cepsRepository.list();
-        return ceps;
-    }
-
+  async execute(): Promise<Cep[]> {
+    const ceps = await this.cepsRepository.list();
+    return ceps;
+  }
 }
 
-export {ListCepUseCase};
+export { ListCepUseCase };

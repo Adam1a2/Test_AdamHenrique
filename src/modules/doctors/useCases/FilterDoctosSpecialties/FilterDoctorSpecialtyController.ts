@@ -1,20 +1,19 @@
-import { Request, Response } from "express";
-import { container } from "tsyringe";
-import { FilterDoctorSpecialtyUseCase } from "./FilterDoctorSpecialtyUseCase";
+import { Request, Response } from 'express';
+import { container } from 'tsyringe';
+import { FilterDoctorSpecialtyUseCase } from './FilterDoctorSpecialtyUseCase';
 
+class FilterDoctorSpecialtyController {
+  async handle(request: Request, response: Response): Promise<Response> {
+    const { specialty } = request.params;
 
+    const filterDoctorSpecialtyUseCase = container.resolve(
+      FilterDoctorSpecialtyUseCase,
+    );
 
-class FilterDoctorSpecialtyController{
-    async handle(request: Request, response: Response): Promise<Response>{
+    const doctors = await filterDoctorSpecialtyUseCase.execute(specialty);
 
-        const { specialty } = request.params;
-
-        const filterDoctorSpecialtyUseCase = container.resolve(FilterDoctorSpecialtyUseCase)
-
-        const doctors = await filterDoctorSpecialtyUseCase.execute(specialty)
-
-        return response.json(doctors).send();
-    }
+    return response.json(doctors).send();
+  }
 }
 
-export{ FilterDoctorSpecialtyController }
+export { FilterDoctorSpecialtyController };

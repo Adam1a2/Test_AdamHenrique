@@ -1,11 +1,10 @@
 import { Connection, createConnection } from 'typeorm';
 import request from 'supertest';
-import { app } from '../../../../shared/infra/routes/app';
-
+import { app } from '@shared/infra/routes/app';
 
 let connection: Connection;
 
-describe("POST /specialties", () => {
+describe('POST /specialties', () => {
   beforeAll(async () => {
     connection = await createConnection();
     await connection.runMigrations();
@@ -16,30 +15,23 @@ describe("POST /specialties", () => {
     await connection.close();
   });
 
-
-  it("should able to create a new specialty", async () => {
+  it('should able to create a new specialty', async () => {
     const specialty = {
-      name: "test",
+      name: 'test',
     };
 
-    const response = await request(app)
-      .post("/specialties")
-      .send(specialty)
-      
+    const response = await request(app).post('/specialties').send(specialty);
 
-    expect(response.status).toBe(201)
-    });
-
-  it("should not be able to create a new specialty with name exists", async () => {
-    const specialty = {
-      name: "test",
-    };
-
-    const response = await request(app)
-      .post("/specialties")
-      .send(specialty)
-      
-
-    expect(response.status).toBe(400)
+    expect(response.status).toBe(201);
   });
-})
+
+  it('should not be able to create a new specialty with name exists', async () => {
+    const specialty = {
+      name: 'test',
+    };
+
+    const response = await request(app).post('/specialties').send(specialty);
+
+    expect(response.status).toBe(400);
+  });
+});

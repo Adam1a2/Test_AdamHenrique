@@ -1,49 +1,56 @@
-import { v4 as uuidV4 } from "uuid";
-import { Column, CreateDateColumn, DeleteDateColumn, Entity, JoinTable, ManyToMany, ManyToOne, PrimaryColumn } from "typeorm";
-import { Cep } from "../../../../cep/infra/typeorm/entities/Cep";
-import { Specialty } from "../../../../specialties/infra/typeorm/entities/specialty";
+import { v4 as uuidV4 } from 'uuid';
+import {
+  Column,
+  CreateDateColumn,
+  DeleteDateColumn,
+  Entity,
+  JoinTable,
+  ManyToMany,
+  ManyToOne,
+  PrimaryColumn,
+} from 'typeorm';
+import { Cep } from '@modules/cep/infra/typeorm/entities/Cep';
+import { Specialty } from '@modules/specialties/infra/typeorm/entities/specialty';
 
+@Entity('doctors')
+class Doctor {
+  @PrimaryColumn()
+  id?: string;
 
-@Entity("doctors")
-class Doctor{
+  @Column()
+  name: string;
 
-    @PrimaryColumn()
-    id?: string;
+  @Column()
+  crm: string;
 
-    @Column()
-    name: string;
+  @Column()
+  landline: string;
 
-    @Column()
-    crm: string;
+  @Column()
+  cellPhone: string;
 
-    @Column()
-    landline: string;
+  @ManyToOne(() => Cep, cep => cep.doctors, { eager: true })
+  cep: Cep;
 
-    @Column()
-    cellPhone: string;
+  @ManyToMany(() => Specialty, specialty => specialty.doctors, { eager: true })
+  @JoinTable({
+    name: 'doctors_specialties',
+    joinColumn: { name: 'doctor_id', referencedColumnName: 'id' },
+    inverseJoinColumn: { name: 'specialty_id', referencedColumnName: 'id' },
+  })
+  specialties: Specialty[];
 
-    @ManyToOne(() => Cep, cep => cep.doctors, {eager: true}) 
-    cep: Cep;
+  @CreateDateColumn()
+  created_at: Date;
 
-    @ManyToMany(() => Specialty, specialty => specialty.doctors, {eager: true})
-    @JoinTable({
-      name: "doctors_specialties",
-      joinColumn: { name: 'doctor_id', referencedColumnName: 'id' },
-      inverseJoinColumn: { name: 'specialty_id', referencedColumnName: 'id' },
-    })
-    specialties: Specialty[];
+  @DeleteDateColumn()
+  deleted_at: Date;
 
-    @CreateDateColumn()
-    created_at: Date;
-
-    @DeleteDateColumn()
-    deleted_at: Date;
-
-    constructor() {
-        if (!this.id) {
-          this.id = uuidV4();
-        }
+  constructor() {
+    if (!this.id) {
+      this.id = uuidV4();
     }
+  }
 }
 
-export { Doctor}
+export { Doctor };

@@ -1,10 +1,7 @@
-import { Doctor } from "../../doctors/infra/typeorm/entities/Doctor";
-
 interface ICreateSpecialtyDTO {
-    id?: string;
+  id?: string;
 
-    name: string;
+  name: string;
+}
 
-  }
-  
-  export { ICreateSpecialtyDTO };
+export { ICreateSpecialtyDTO };

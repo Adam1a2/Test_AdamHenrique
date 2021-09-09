@@ -1,11 +1,10 @@
 import { Connection, createConnection } from 'typeorm';
 import request from 'supertest';
-import { app } from '../../../../shared/infra/routes/app';
-
+import { app } from '@shared/infra/routes/app';
 
 let connection: Connection;
 
-describe("GET /specialties", () => {
+describe('GET /specialties', () => {
   beforeAll(async () => {
     connection = await createConnection();
     await connection.runMigrations();
@@ -16,12 +15,10 @@ describe("GET /specialties", () => {
     await connection.close();
   });
 
-
-  it("should be able to list all specialties", async () => {  
-    const response = await request(app).get("/specialties")
+  it('should be able to list all specialties', async () => {
+    const response = await request(app).get('/specialties');
 
     expect(response.status).toBe(200);
     expect(response.body.length).toBe(8);
   });
-
-})
+});

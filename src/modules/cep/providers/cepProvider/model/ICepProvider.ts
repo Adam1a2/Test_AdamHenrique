@@ -1,8 +1,7 @@
-import { ICreateCepDTO } from "../../../dtos/ICreateCepDTO";
+import { ICreateCepDTO } from '@modules/cep/dtos/ICreateCepDTO';
 
-
-interface ICepProvider{
-    getAddress(cep: string): Promise<ICreateCepDTO>
+interface ICepProvider {
+  getAddress(cep: string): Promise<ICreateCepDTO>;
 }
 
-export { ICepProvider}
+export { ICepProvider };
