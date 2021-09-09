@@ -63,7 +63,7 @@ src/
 
 ### Documentação
 
-Após iniciar a aplicação, a documentação de toda a api estará disponível a partir do endereço <http://localhost:3333/docs-api>.
+Após iniciar a aplicação, a documentação de toda a api estará disponível a partir do endereço <http://localhost:3333/api-docs/>.
 
 ### Testes
 
