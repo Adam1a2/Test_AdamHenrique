@@ -1,3 +1,4 @@
+import "reflect-metadata";
 import { inject, injectable } from 'tsyringe';
 import { AppError } from '@shared/errors/AppError';
 import { CreateCepUseCase } from '@modules/cep/useCases/createCeps/CreateCepUseCase';

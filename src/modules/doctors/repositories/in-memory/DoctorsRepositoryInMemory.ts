@@ -1,8 +1,8 @@
-import { Cep } from 'src/modules/cep/infra/typeorm/entities/Cep';
-import { Specialty } from 'src/modules/specialties/infra/typeorm/entities/specialty';
-import { ICreateDoctorDTO } from '../../dtos/ICreateDoctorDTO';
-import { Doctor } from '../../infra/typeorm/entities/Doctor';
-import { IDoctorsRepository } from '../IDoctorRepository';
+import { Cep } from '@modules/cep/infra/typeorm/entities/Cep';
+import { ICreateDoctorDTO } from '@modules/doctors/dtos/ICreateDoctorDTO';
+import { Doctor } from '@modules/doctors/infra/typeorm/entities/Doctor';
+import { Specialty } from '@modules/specialties/infra/typeorm/entities/specialty';
+import { IDoctorsRepository } from '@modules/doctors/repositories/IDoctorRepository';
 
 class DoctorsRepositoryInMemory implements IDoctorsRepository {
   doctors: Doctor[] = [];

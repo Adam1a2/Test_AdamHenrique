@@ -6,7 +6,7 @@
     "baseUrl": "./src",                             
     "paths": {
       "@modules/*": ["modules/*"],
-      "@shared/*": ["shared/*"],
+      "@shared/*": ["shared/*"]
     },                               
     "esModuleInterop": true,                      
     "experimentalDecorators": true,              

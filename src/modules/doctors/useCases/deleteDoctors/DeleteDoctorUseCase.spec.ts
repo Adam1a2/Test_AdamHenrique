@@ -1,3 +1,4 @@
+import "reflect-metadata"
 import { CreateCepUseCase } from '@modules/cep/useCases/createCeps/CreateCepUseCase';
 import { CepProviderInMemory } from '@modules/cep/providers/cepProvider/in-memory/CepProviderInMemory';
 import { CepsRepositoryInMemory } from '@modules/cep/repositories/in-memory/CepsRepositoryInMemory';
