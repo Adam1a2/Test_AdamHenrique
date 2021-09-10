@@ -51,7 +51,7 @@ services:
         migrations:
             build: .
             container_name: migrations
-            command: sh -c "yarn typeorm migration:run"
+            command: sh -c "dockerize -wait tcp://database:5432 -timeout 300s -wait-retry-interval 1s yarn typeorm migration:run"
             depends_on: 
                 - database
             networks: 
